@@ -18,11 +18,11 @@ def random_shift_times
   # Başlangıç: bugün -30 gün ile bugün + 5 gün arası rastgele gün
   base_day = Faker::Time.between(from: 30.days.ago, to: 5.days.from_now)
   # Başlangıç saati: base_day saatinde
-  start_time = base_day.change(min: [0, (base_day.min / 15).floor * 15].max)
+  start_time = base_day.change(min: [ 0, (base_day.min / 15).floor * 15 ].max)
   # Vardiya süresi 4-10 saat arası
   duration_hours = rand(4..10)
   end_time = start_time + duration_hours.hours
-  [start_time, end_time]
+  [ start_time, end_time ]
 end
 
 NUM_PERSONNELS.times do |i|
@@ -38,7 +38,7 @@ NUM_PERSONNELS.times do |i|
   shifts_count.times do
     st, et = random_shift_times
     Vardiya.create!(
-      ad: ["Gündüz", "Gece", "Olağan", "Yedek"].sample,
+      ad: [ "Gündüz", "Gece", "Olağan", "Yedek" ].sample,
       baslangic_saati: st,
       bitis_saati: et,
       personel: personel
